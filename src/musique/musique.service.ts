@@ -1,26 +1,40 @@
 import { Injectable } from '@nestjs/common';
-import { CreateMusiqueDto } from './dto/create-musique.dto';
-import { UpdateMusiqueDto } from './dto/update-musique.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Musique } from './entities/musique.entity';
 
 @Injectable()
 export class MusiqueService {
-  create(createMusiqueDto: CreateMusiqueDto) {
-    return 'This action adds a new musique';
+  constructor(
+    @InjectRepository(Musique)
+    private musiqueRepository: Repository<Musique>,
+  ) {}
+
+  async create(body: Musique): Promise<Musique> {
+    const musique = this.musiqueRepository.create(body);
+    return await this.musiqueRepository.save(musique);
   }
 
-  findAll() {
-    return `This action returns all musique`;
+  async findAll(): Promise<Musique[]> {
+    return await this.musiqueRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} musique`;
+  async findOne(id_musique: number): Promise<Musique> {
+    const musique = await this.musiqueRepository.findOne({
+      where: { id_musique },
+    });
+    return musique;
   }
 
-  update(id: number, updateMusiqueDto: UpdateMusiqueDto) {
-    return `This action updates a #${id} musique`;
+  async update(id_musique: number, body: Musique): Promise<Musique | null> {
+    const musique = await this.musiqueRepository.findOne({
+      where: { id_musique },
+    });
+    this.musiqueRepository.merge(musique, body);
+    return await this.musiqueRepository.save(musique);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} musique`;
+  async remove(id: number): Promise<void> {
+    await this.musiqueRepository.delete(id);
   }
 }

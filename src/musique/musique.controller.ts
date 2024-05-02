@@ -1,13 +1,22 @@
-import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  Put,
+} from '@nestjs/common';
 import { MusiqueService } from './musique.service';
+import { Musique } from './entities/musique.entity';
 
 @Controller('musiques')
 export class MusiqueController {
   constructor(private readonly musiqueService: MusiqueService) {}
 
   @Post()
-  create(@Body() createMusiqueDto: CreateMusiqueDto) {
-    return this.musiqueService.create(createMusiqueDto);
+  create(@Body() body: Musique) {
+    return this.musiqueService.create(body);
   }
 
   @Get()
@@ -23,5 +32,10 @@ export class MusiqueController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.musiqueService.remove(+id);
+  }
+
+  @Put(':id')
+  update(@Param('id') id: string, @Body() body: Musique) {
+    return this.musiqueService.update(+id, body);
   }
 }
