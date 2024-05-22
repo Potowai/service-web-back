@@ -1,7 +1,7 @@
 // source.entity.ts
 /* eslint-disable prettier/prettier */
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
-import { Musique } from './musique.entity';
+import { Musique } from '../../musique/entities/musique.entity';
 
 @Entity()
 export class Source {

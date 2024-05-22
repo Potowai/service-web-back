@@ -1,7 +1,7 @@
 // partie.entity.ts
 /* eslint-disable prettier/prettier */
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
-import { Utilisateur } from './utilisateur.entity';
+import { Utilisateur } from '../../utilisateur/entities/utilisateur.entity';
 
 @Entity()
 export class Partie {

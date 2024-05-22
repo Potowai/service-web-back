@@ -4,6 +4,9 @@ import { AppService } from './app.service';
 import { MusiqueModule } from './musique/musique.module';
 import * as dotenv from 'dotenv';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { SourceService } from './source/source.service';
+import { PartieService } from './partie/partie.service';
+import { UtilisateurService } from './utilisateur/utilisateur.service';
 
 dotenv.config();
 
@@ -23,6 +26,6 @@ dotenv.config();
     }),
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, SourceService, PartieService, UtilisateurService],
 })
 export class AppModule {}
