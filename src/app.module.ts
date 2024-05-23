@@ -7,6 +7,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { SourceService } from './source/source.service';
 import { PartieService } from './partie/partie.service';
 import { UtilisateurService } from './utilisateur/utilisateur.service';
+import { PartieController } from './partie/partie.controller';
+import { PartieModule } from './partie/partie.module';
 
 dotenv.config();
 
@@ -24,8 +26,9 @@ dotenv.config();
       synchronize: true,
       ssl: { rejectUnauthorized: false },
     }),
+    PartieModule,
   ],
-  controllers: [AppController],
+  controllers: [AppController, PartieController],
   providers: [AppService, SourceService, PartieService, UtilisateurService],
 })
 export class AppModule {}
