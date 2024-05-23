@@ -21,7 +21,11 @@ export class MusiqueController {
 
   @Get()
   findAll() {
-    return this.musiqueService.findAll();
+    try {
+      return this.musiqueService.findAll();
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   @Get(':id')
