@@ -19,16 +19,16 @@ export class MusiqueService {
     return await this.musiqueRepository.find();
   }
 
-  async findOne(id_musique: number): Promise<Musique> {
+  async findOne(id: number): Promise<Musique> {
     const musique = await this.musiqueRepository.findOne({
-      where: { id_musique },
+      where: { id },
     });
     return musique;
   }
 
-  async update(id_musique: number, body: Musique): Promise<Musique | null> {
+  async update(id: number, body: Musique): Promise<Musique | null> {
     const musique = await this.musiqueRepository.findOne({
-      where: { id_musique },
+      where: { id },
     });
     this.musiqueRepository.merge(musique, body);
     return await this.musiqueRepository.save(musique);
