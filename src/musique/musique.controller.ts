@@ -6,6 +6,7 @@ import {
   Param,
   Delete,
   Put,
+  Query,
 } from '@nestjs/common';
 import { MusiqueService } from './musique.service';
 import { Musique } from './entities/musique.entity';
@@ -20,12 +21,13 @@ export class MusiqueController {
   }
 
   @Get()
-  findAll() {
-    try {
-      return this.musiqueService.findAll();
-    } catch (e) {
-      console.error(e);
+  async findAll(@Query('style') style: string) {
+    console.log('style', style);
+    if (style) {
+      console.log(style);
+      return this.musiqueService.findByStyle(style);
     }
+    return this.musiqueService.findAll();
   }
 
   @Get(':id')

@@ -37,4 +37,9 @@ export class MusiqueService {
   async remove(id: number): Promise<void> {
     await this.musiqueRepository.delete(id);
   }
+
+  async findByStyle(style: string): Promise<Musique[]> {
+    const musique = await this.musiqueRepository.findBy({ style });
+    return musique;
+  }
 }

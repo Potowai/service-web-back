@@ -4,17 +4,14 @@ import { AppService } from './app.service';
 import { MusiqueModule } from './musique/musique.module';
 import * as dotenv from 'dotenv';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { SourceService } from './source/source.service';
-import { PartieService } from './partie/partie.service';
-import { UtilisateurService } from './utilisateur/utilisateur.service';
-import { PartieController } from './partie/partie.controller';
 import { PartieModule } from './partie/partie.module';
+import { SourceModule } from './source/source.module';
+import { UtilisateurModule } from './utilisateur/utilisateur.module';
 
 dotenv.config();
 
 @Module({
   imports: [
-    MusiqueModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.POSTGRES_HOST,
@@ -22,13 +19,16 @@ dotenv.config();
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DATABASE,
-      entities: [__dirname + '/../**/*.entity{.ts,.js}'],
+      autoLoadEntities: true,
       synchronize: true,
       ssl: { rejectUnauthorized: false },
     }),
+    MusiqueModule,
     PartieModule,
+    SourceModule,
+    UtilisateurModule,
   ],
-  controllers: [AppController, PartieController],
-  providers: [AppService, SourceService, PartieService, UtilisateurService],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}
