@@ -16,19 +16,21 @@ export class MusiqueService {
   }
 
   async findAll(): Promise<Musique[]> {
-    return await this.musiqueRepository.find();
+    return await this.musiqueRepository.find({ relations: ['source'] });
   }
 
   async findOne(id: number): Promise<Musique> {
     const musique = await this.musiqueRepository.findOne({
       where: { id },
+      relations: ['source'] 
     });
     return musique;
   }
 
   async update(id: number, body: Musique): Promise<Musique | null> {
     const musique = await this.musiqueRepository.findOne({
-      where: { id },
+      where: { id },      relations: ['source'] 
+
     });
     this.musiqueRepository.merge(musique, body);
     return await this.musiqueRepository.save(musique);

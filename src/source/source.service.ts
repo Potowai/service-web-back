@@ -11,13 +11,12 @@ export class SourceService {
   ) {}
 
   findAll(): Promise<Source[]> {
-    return this.sourceRepository.find({ relations: ['musiques'] });
+    return this.sourceRepository.find();
   }
 
   findOne(id: number): Promise<Source> {
     return this.sourceRepository.findOne({
       where: { id },
-      relations: ['musiques'],
     });
   }
 
