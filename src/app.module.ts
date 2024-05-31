@@ -5,7 +5,6 @@ import { MusiqueModule } from './musique/musique.module';
 import * as dotenv from 'dotenv';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PartieModule } from './partie/partie.module';
-import { SourceModule } from './source/source.module';
 import { UtilisateurModule } from './utilisateur/utilisateur.module';
 
 dotenv.config();
@@ -25,7 +24,6 @@ dotenv.config();
     }),
     MusiqueModule,
     PartieModule,
-    SourceModule,
     UtilisateurModule,
   ],
   controllers: [AppController],

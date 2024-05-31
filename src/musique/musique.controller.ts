@@ -16,15 +16,13 @@ export class MusiqueController {
   constructor(private readonly musiqueService: MusiqueService) {}
 
   @Post()
-  create(@Body() body: Musique) {
+  create(@Body() body: Musique[]) {
     return this.musiqueService.create(body);
   }
 
   @Get()
   async findAll(@Query('style') style: string) {
-    console.log('style', style);
     if (style) {
-      console.log(style);
       return this.musiqueService.findByStyle(style);
     }
     return this.musiqueService.findAll();

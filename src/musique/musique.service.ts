@@ -10,27 +10,24 @@ export class MusiqueService {
     private musiqueRepository: Repository<Musique>,
   ) {}
 
-  async create(body: Musique): Promise<Musique> {
-    const musique = this.musiqueRepository.create(body);
-    return await this.musiqueRepository.save(musique);
+  async create(musiques: Musique[]): Promise<Musique[]> {
+    return await this.musiqueRepository.save(musiques);
   }
 
   async findAll(): Promise<Musique[]> {
-    return await this.musiqueRepository.find({ relations: ['source'] });
+    return await this.musiqueRepository.find();
   }
 
   async findOne(id: number): Promise<Musique> {
     const musique = await this.musiqueRepository.findOne({
       where: { id },
-      relations: ['source'] 
     });
     return musique;
   }
 
   async update(id: number, body: Musique): Promise<Musique | null> {
     const musique = await this.musiqueRepository.findOne({
-      where: { id },      relations: ['source'] 
-
+      where: { id },
     });
     this.musiqueRepository.merge(musique, body);
     return await this.musiqueRepository.save(musique);
