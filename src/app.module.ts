@@ -6,8 +6,6 @@ import * as dotenv from 'dotenv';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PartieModule } from './partie/partie.module';
 import { UtilisateurModule } from './utilisateur/utilisateur.module';
-import { MiddlewareConsumer } from '@nestjs/common/interfaces';
-import { CorsMiddleware } from './cors.middleware';
 
 dotenv.config();
 
@@ -31,8 +29,4 @@ dotenv.config();
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer.apply(CorsMiddleware).forRoutes('*');
-  }
-}
+export class AppModule {}
