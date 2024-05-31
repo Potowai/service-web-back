@@ -25,7 +25,7 @@ export class PartieController {
   }
 
   @Post()
-  create(@Body() partie: Partie): Promise<Partie> {
+  create(@Body() partie: Partie[]): Promise<Partie[]> {
     return this.partieService.create(partie);
   }
 

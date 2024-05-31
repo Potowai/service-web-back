@@ -21,7 +21,7 @@ export class PartieService {
     });
   }
 
-  create(partie: Partie): Promise<Partie> {
+  create(partie: Partie[]): Promise<Partie[]> {
     return this.partieRepository.save(partie);
   }
 

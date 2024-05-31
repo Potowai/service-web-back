@@ -3,14 +3,20 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
 import { Utilisateur } from '../../utilisateur/entities/utilisateur.entity';
 
-@Entity()
+@Entity('parties')
 export class Partie {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column({ length: 50 })
-    points: string;
+  @Column()
+  points: number;
 
-    @ManyToOne(() => Utilisateur, utilisateur => utilisateur.parties)
-    utilisateur: Utilisateur;
+  @Column()
+  date: Date;
+
+  @Column({ length: 30 })
+  style: string;
+
+  @ManyToOne(() => Utilisateur, (utilisateur) => utilisateur.parties)
+  utilisateur: Utilisateur;
 }
