@@ -4,7 +4,7 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors({
-    origin: 'https://tp-service-web.onrender.com', // l'URL de votre application React
+    origin: ['https://tp-service-web.onrender.com', 'http://localhost:3000'], // l'URL de votre application React
     methods: ['*'],
     credentials: true, // Si vous utilisez des cookies d'authentification
     allowedHeaders: ['*'],
