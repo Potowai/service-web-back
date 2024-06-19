@@ -18,6 +18,11 @@ export class UtilisateurService {
     return this.utilisateurRepository.findOne({ where: { id } });
   }
 
+  findOneByPseudo(pseudo: string): Promise<Utilisateur> {
+    console.log(pseudo);
+    return this.utilisateurRepository.findOne({ where: { pseudo } });
+  }
+
   create(utilisateur: Utilisateur): Promise<Utilisateur> {
     return this.utilisateurRepository.save(utilisateur);
   }

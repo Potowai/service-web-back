@@ -19,9 +19,12 @@ export class UtilisateurController {
     return this.utilisateurService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: number): Promise<Utilisateur> {
-    return this.utilisateurService.findOne(id);
+  @Get(':idOrPseudo')
+  findOne(@Param('idOrPseudo') idOrPseudo: string): Promise<Utilisateur> {
+    if (isNaN(Number(idOrPseudo))) {
+      return this.utilisateurService.findOneByPseudo(idOrPseudo);
+    }
+    return this.utilisateurService.findOne(Number(idOrPseudo));
   }
 
   @Post()
