@@ -10,7 +10,7 @@ async function bootstrap() {
 
   // Configuration CORS
   app.enableCors({
-    origin: ['https://tp-service-web.onrender.com', 'http://localhost:3000'], // l'URL de votre application React
+    origin: ['https://tp-service-web.onrender.com', 'http://localhost:3000', 'https://melodle-back.vercel.app/'], // l'URL de votre application React
     methods: ['*'],
     credentials: true, // Si vous utilisez des cookies d'authentification
     allowedHeaders: ['*'],
