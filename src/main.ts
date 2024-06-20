@@ -10,7 +10,7 @@ async function bootstrap() {
     .setTitle('Melodle API')
     .setDescription('Documentation API Test')
     .setVersion('1.0')
-    .addBearerAuth({ type: 'http', scheme: 'bearer', bearerFormat: 'JWT' })
+    //.addBearerAuth({ type: 'http', scheme: 'bearer', bearerFormat: 'JWT' })
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
