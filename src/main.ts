@@ -1,16 +1,12 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import helmet from 'helmet';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // Utilisation de Helmet pour sécuriser les en-têtes HTTP
-  app.use(helmet());
-
   // Configuration CORS
   app.enableCors({
-    origin: ['https://tp-service-web.onrender.com', 'http://localhost:3000', 'https://melodle-back.vercel.app'], // l'URL de votre application React
+    origin: ['http://localhost:3000', 'https://melodle-back.vercel.app'], // l'URL de votre application React
     methods: ['*'],
     credentials: true, // Si vous utilisez des cookies d'authentification
     allowedHeaders: ['*'],
