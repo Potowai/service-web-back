@@ -6,7 +6,7 @@ async function bootstrap() {
 
   // Configuration CORS
   app.enableCors({
-    origin: ['http://localhost:3000', 'https://melodle-back.vercel.app'], // l'URL de votre application React
+    origin: ['http://localhost:3000', 'https://melodle-one.vercel.app'], // l'URL de votre application React
     methods: ['*'],
     credentials: true, // Si vous utilisez des cookies d'authentification
     allowedHeaders: ['*'],
