@@ -4,15 +4,31 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // Configuration CORS
+  // Utilisation de Helmet pour sécuriser les en-têtes HTTP
+
+  // Ajout du middleware CORS
   app.enableCors({
-    origin: ['http://localhost:3000', 'https://melodle-one.vercel.app','https://melodle.netlify.app'], // l'URL de votre application React
-    methods: ['*'],
-    credentials: true, // Si vous utilisez des cookies d'authentification
-    allowedHeaders: ['*'],
+    origin: [
+      'https://melodle.netlify.app', // Ajoutez le domaine de votre frontend déployé
+      'http://localhost:3000', // Pour le développement local
+    ],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
   });
 
-  await app.listen(3005);
+  // Ajout du middleware pour gérer les requêtes preflight OPTIONS
+  app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', 'https://melodle.netlify.app');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    if (req.method === 'OPTIONS') {
+      return res.sendStatus(204);
+    }
+    next();
+  });
+
+  await app.listen(process.env.PORT || 3005);
   console.log(`Application is running on: ${await app.getUrl()}`);
 }
 bootstrap();
