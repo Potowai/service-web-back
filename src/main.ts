@@ -12,8 +12,8 @@ async function bootstrap() {
       'https://melodle.netlify.app', // Ajoutez le domaine de votre frontend déployé
       'http://localhost:3000', // Pour le développement local
     ],
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
+    methods: ['*'],
+    allowedHeaders: ['*'],
     credentials: true,
   });
 
